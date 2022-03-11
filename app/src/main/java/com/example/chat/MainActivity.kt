@@ -1,5 +1,6 @@
 package com.example.chat
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,7 +29,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupFunction() {
         binding.bPerson.setOnClickListener {
-            TODO()
+            val intent_to_person = Intent(this, SignUpActivity::class.java)
+            startActivity(intent_to_person)
         }
         binding.bHome.setOnClickListener {
             TODO()
