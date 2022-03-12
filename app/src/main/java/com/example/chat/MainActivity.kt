@@ -29,8 +29,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupFunction() {
         binding.bPerson.setOnClickListener {
-            val intent_to_person = Intent(this, SignUpActivity::class.java)
-            startActivity(intent_to_person)
+//            val intent_to_signup = Intent(this, SignUpActivity::class.java)
+//            startActivity(intent_to_signup)
+            val intent_to_login = Intent(this, LoginActivity::class.java)
+            startActivity(intent_to_login)
         }
         binding.bHome.setOnClickListener {
             TODO()
@@ -38,7 +40,6 @@ class MainActivity : AppCompatActivity() {
         binding.bSearch.setOnClickListener {
             TODO()
         }
-
     }
 
 
