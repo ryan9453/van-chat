@@ -1,5 +1,6 @@
 package com.example.chat
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,8 +20,6 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Log.d(TAG, "onCreate: signup")
-
-
 
         // 註冊完成的送出按鈕
         binding.btSignSend.setOnClickListener {
@@ -65,11 +64,38 @@ class SignUpActivity : AppCompatActivity() {
                     .apply()
 
 
+
                 Log.d(TAG, "帳密輸入沒問題")
 
                 // 登入狀態詢問對話框，按「是」或「否」都會跳轉到 MainA
                 // 差在登入狀態不一樣，影響到下次開 APP，以 Boolean控制
-                // TODO
+                val prefLogin = getSharedPreferences("login", MODE_PRIVATE)
+
+                val intent_to_main = Intent(this, MainActivity::class.java)
+
+                AlertDialog.Builder(this)
+                    .setTitle("Message")
+                    .setMessage("""Sign up successfully!
+                        |keep logged in？ 
+                    """.trimMargin())
+
+                    // 若按 OK 登入狀態改成 true並將此次帳號存入資料夾
+                    .setPositiveButton("OK") { d, w ->
+                        prefLogin.edit()
+                            .putBoolean("login_state", true)
+                            .putString("login_userid", user)
+                            .apply()
+                        startActivity(intent_to_main)
+                    }
+                    .setNegativeButton("NO") { d, w ->
+                        prefLogin.edit()
+                            .putBoolean("login_state", true)
+                            .putString("login_userid", user)
+                            .apply()
+                        startActivity(intent_to_main)
+
+                    }
+                    .show()
 
             // 錯誤訊息對話框
             } else {
