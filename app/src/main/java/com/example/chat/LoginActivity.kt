@@ -109,24 +109,12 @@ class LoginActivity : AppCompatActivity() {
                 }
                 Log.d(TAG, "帳號密碼正確 並印出remember=${remember}")
 
-                // 登入狀態詢問對話框，按「是」或「否」都會跳轉到 MainA
-                // 差在登入狀態不一樣，影響到下次開 APP，以 Boolean控制
+                // 登入成功對話框，按OK後都會跳轉到 MainA
+                // 登入成功後，會把登入狀態紀錄到本地資料夾
                 AlertDialog.Builder(this)
                     .setTitle("Message")
-                    .setMessage("""Log in successfully!
-                        |keep logged in？ 
-                    """.trimMargin())
-
-                    // 若按 OK 登入狀態改成 true並將此次帳號存入資料夾
+                    .setMessage("Log in successfully!")
                     .setPositiveButton("OK") { d, w ->
-                        prefLogin.edit()
-                            .putBoolean("login_state", true)
-                            .putString("login_userid", ed_user)
-                            .apply()
-                        startActivity(intent_to_main)
-                    }
-                    .setNegativeButton("NO") { d, w ->
-                        startActivity(intent_to_main)
                         prefLogin.edit()
                             .putBoolean("login_state", true)
                             .putString("login_userid", ed_user)

@@ -75,9 +75,7 @@ class SignUpActivity : AppCompatActivity() {
 
                 AlertDialog.Builder(this)
                     .setTitle("Message")
-                    .setMessage("""Sign up successfully!
-                        |keep logged in？ 
-                    """.trimMargin())
+                    .setMessage("Sign up successfully!")
 
                     // 若按 OK 登入狀態改成 true並將此次帳號存入資料夾
                     .setPositiveButton("OK") { d, w ->
@@ -86,14 +84,6 @@ class SignUpActivity : AppCompatActivity() {
                             .putString("login_userid", user)
                             .apply()
                         startActivity(intent_to_main)
-                    }
-                    .setNegativeButton("NO") { d, w ->
-                        prefLogin.edit()
-                            .putBoolean("login_state", true)
-                            .putString("login_userid", user)
-                            .apply()
-                        startActivity(intent_to_main)
-
                     }
                     .show()
 
